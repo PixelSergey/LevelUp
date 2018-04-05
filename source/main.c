@@ -42,13 +42,9 @@ int main(int argc, char **argv){
 	
 	hello = loadImage("romfs:/hello.png");
 	hello2 = loadImage("romfs:/hello_bottom.png");
-	draw(hello, screen, 0, 0);
-	draw(hello2, screen, 40, 240);
-	
-	SDL_Flip(screen);
 	
 	while(running){
-
+		
 		while(SDL_PollEvent(&event)){
 			if(event.type == SDL_KEYDOWN){
 				SDLKey key = event.key.keysym.sym;
@@ -59,7 +55,10 @@ int main(int argc, char **argv){
 			}
 		}
 		if(!running) break;
-		// ...
+		
+		draw(hello, screen, 0, 0);
+		draw(hello2, screen, 40, 240);
+		SDL_Flip(screen);
 		
 	}
 	
@@ -73,7 +72,7 @@ void quit(){
 	SDL_Quit();
 }
 
-SDL_Surface *loadImage(char path[]){
+SDL_Surface* loadImage(char path[]){
 	
 	SDL_Surface* rawImage = NULL;
 	SDL_Surface* returnImage = NULL;

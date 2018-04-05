@@ -1,5 +1,5 @@
-#ifndef MAIN_INCLUDED
-#define MAIN_INCLUDED
+#ifndef MAIN_H
+#define MAIN_H
 
 bool init();
 int main(int argc, char **argv);

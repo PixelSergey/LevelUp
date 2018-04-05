@@ -28,12 +28,17 @@ PORTLIBS := $(DEVKITPRO)/portlibs/3ds
 #     - icon.png
 #     - <libctru folder>/default_icon.png
 #---------------------------------------------------------------------------------
-TARGET		:=	$(notdir $(CURDIR))
-BUILD		:=	build
-SOURCES         :=      source
-DATA		:=	data
-INCLUDES        :=      include
-ROMFS		:=	romfs
+TARGET		    :=	$(notdir $(CURDIR))
+BUILD		    :=	build
+SOURCES         :=  source
+DATA		    :=	data
+INCLUDES        :=  include
+ROMFS		    :=	romfs
+
+APP_TITLE       :=  LevelUp
+APP_DESCRIPTION :=  Update applications from the comfort of your couch
+APP_AUTHOR      :=  PixelSergey/Sergey\#5402
+ICON            :=  icon.png
 
 #---------------------------------------------------------------------------------
 # options for code generation
@@ -51,7 +56,7 @@ CXXFLAGS	:= $(CFLAGS) -fno-rtti -fno-exceptions -std=gnu++11
 ASFLAGS	:=	-g $(ARCH)
 LDFLAGS	=	-specs=3dsx.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 
-LIBS	:=    -lSDL_image -lSDL -lpng -ljpeg -lz -lcitro3d -lctru -lm
+LIBS	:=  -lSDL_image -lSDL -lpng -ljpeg -lz -lcitro3d -lctru -lm
 
 #---------------------------------------------------------------------------------
 # list of directories containing libraries, this must be the top level containing

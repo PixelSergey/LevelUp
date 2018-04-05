@@ -1,4 +1,6 @@
 *.elf
 *.3dsx
 *.smdh
+*.xcf
+*.exe
 build/
