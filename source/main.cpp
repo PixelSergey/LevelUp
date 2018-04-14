@@ -3,23 +3,28 @@
 
 #include <3ds.h>
 #include "SDL/SDL.h"
-#include "SDL/SDL_image.h"
 
-#include "main.h"
+#include "main.hpp"
+#include "utils.hpp"
+
 
 SDL_Surface* hello = NULL;
 SDL_Surface* hello2 = NULL;
+SDL_Surface* ball = NULL;
 SDL_Surface* screen = NULL;
+int x = 20;
+int y = 20;
+bool running = true;
 SDL_Event event;
 
 bool init(){
 	
-	if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO) != 0){
+	if(SDL_Init(SDL_INIT_VIDEO) != 0){
 	        return false;
 	}
 	
 	// 480 = TOP_SCREEN HEIGHT + BOTTOM_SCREEN HEIGHT
-	screen = SDL_SetVideoMode(400, 480, 32, SDL_DUALSCR);
+	screen = SDL_SetVideoMode(400, 480, 16, SDL_DUALSCR);
 	if(screen == NULL){
 		return false;
 	}
@@ -32,20 +37,20 @@ bool init(){
 		return false;
 	}
 	
+    hello = loadImage("romfs:/hello.png");
+	hello2 = loadImage("romfs:/hello_bottom.png");
+    ball = loadImage("romfs:/ball.png");
+    
 	return true;
 }
 
 int main(int argc, char **argv){
-	
 	if(!init()) return 1;
-	bool running = true;
-	
-	hello = loadImage("romfs:/hello.png");
-	hello2 = loadImage("romfs:/hello_bottom.png");
-	
+    
 	while(running){
+        SDL_FillRect(screen, NULL, 0x000000);
 		
-		while(SDL_PollEvent(&event)){
+        while(SDL_PollEvent(&event)){
 			if(event.type == SDL_KEYDOWN){
 				SDLKey key = event.key.keysym.sym;
 				if(key == SDLK_RETURN){
@@ -55,11 +60,12 @@ int main(int argc, char **argv){
 			}
 		}
 		if(!running) break;
-		
-		draw(hello, screen, 0, 0);
-		draw(hello2, screen, 40, 240);
-		SDL_Flip(screen);
-		
+        
+        SDL_GetMouseState(&x,&y);
+        draw(hello, screen, 0, 0);
+        draw(hello2, screen, 40, 240);
+        draw(ball, screen, x, y);
+        SDL_Flip(screen);
 	}
 	
 	quit();
@@ -70,27 +76,4 @@ void quit(){
 	SDL_FreeSurface(hello);
 	SDL_FreeSurface(hello2);
 	SDL_Quit();
-}
-
-SDL_Surface* loadImage(char path[]){
-	
-	SDL_Surface* rawImage = NULL;
-	SDL_Surface* returnImage = NULL;
-	
-	rawImage = IMG_Load(path);
-	if(rawImage != NULL){
-		returnImage = SDL_DisplayFormatAlpha(rawImage);
-		SDL_FreeSurface(rawImage);
-	}
-	
-	return returnImage;
-}
-
-void draw(SDL_Surface* source, SDL_Surface* target, int x, int y){
-	
-	SDL_Rect coords;
-	coords.x = x;
-	coords.y = y;
-	
-	SDL_BlitSurface(source, NULL, target, &coords);
 }
