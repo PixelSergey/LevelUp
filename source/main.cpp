@@ -12,9 +12,12 @@ SDL_Surface* hello = NULL;
 SDL_Surface* hello2 = NULL;
 SDL_Surface* ball = NULL;
 SDL_Surface* screen = NULL;
+Button* btn = NULL;
+
 int x = 20;
 int y = 20;
 bool running = true;
+bool test = false;
 SDL_Event event;
 
 bool init(){
@@ -40,7 +43,7 @@ bool init(){
     hello = loadImage("romfs:/hello.png");
 	hello2 = loadImage("romfs:/hello_bottom.png");
     ball = loadImage("romfs:/ball.png");
-    
+    btn = new Button("romfs:/button.png", screen, 50, 320);
 	return true;
 }
 
@@ -48,8 +51,7 @@ int main(int argc, char **argv){
 	if(!init()) return 1;
     
 	while(running){
-        SDL_FillRect(screen, NULL, 0x000000);
-		
+        
         while(SDL_PollEvent(&event)){
 			if(event.type == SDL_KEYDOWN){
 				SDLKey key = event.key.keysym.sym;
@@ -58,12 +60,21 @@ int main(int argc, char **argv){
 					break;
 				}
 			}
+			if(event.type == SDL_MOUSEBUTTONUP){
+				x = event.button.x;
+				y = event.button.y;
+				if(btn->isClicked(x, y)){
+					test = true;
+				}
+			}
 		}
 		if(!running) break;
         
         SDL_GetMouseState(&x,&y);
         draw(hello, screen, 0, 0);
         draw(hello2, screen, 40, 240);
+        if(!test)
+		btn->draw();
         draw(ball, screen, x, y);
         SDL_Flip(screen);
 	}

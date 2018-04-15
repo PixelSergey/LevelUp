@@ -36,7 +36,7 @@ INCLUDES        :=  include
 ROMFS		    :=	romfs
 
 APP_TITLE       :=  LevelUp
-APP_DESCRIPTION :=  Update applications from the comfort of your couch
+APP_DESCRIPTION :=  Update 3DS applications from the comfort of your couch
 APP_AUTHOR      :=  PixelSergey/Sergey\#5402
 ICON            :=  icon.png
 

@@ -30,3 +30,18 @@ void draw(SDL_Surface* source, SDL_Surface* target, int x, int y){
 	
 	SDL_BlitSurface(source, NULL, target, &coords);
 }
+
+Button::Button(const char path[], SDL_Surface* screen, int x, int y){
+    image = loadImage(path);
+    this->x = x;
+    this->y = y;
+    this->screen = screen;
+}
+
+void Button::draw(){
+    ::draw(image, screen, x, y);
+}
+
+bool Button::isClicked(int mouseX, int mouseY){
+    return mouseX > x && mouseX < x + image->w && mouseY > y && mouseY < y + image->h;
+}
