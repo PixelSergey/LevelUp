@@ -13,6 +13,7 @@ private:
     int y;
 public:
     Button(const char path[], SDL_Surface* screen, int x, int y);
+    void unload() const;
     void draw();
     bool isClicked(int mouseX, int mouseY);
 };

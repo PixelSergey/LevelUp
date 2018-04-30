@@ -12,12 +12,15 @@ packages installed using `pacman -S <package name>` after installing DevkitARM.
 ### Support:
 
 For help and questions, submit a [github issue](../../issues) or contact me on the
-[Nintendo Homebrew Discord](https://discord.gg/C29hYvh) by pinging me (@Sergey#5402) in a
+[Nintendo Homebrew Discord][nh] by pinging me (@Sergey#5402) in a
 suitable channel (#hacking-general/#off-topic).
 
 ### Credits:
 
 - [Kar](https://github.com/Pirater12)[tik](https://gbatemp.net/members/kartik.366643/) for providing me with information, files, tips and sanity
+- Everyone at #dev on the [Nintendo Homebrew Discord][nh]
 - Nop90 for the [SDL v1.2 3DS port](https://github.com/nop90/SDL-3DS)
 - Lazy Foo' Productions for [the SDL guide](http://lazyfoo.net/SDL_tutorials)
 - [How to exit vim](https://stackoverflow.com/questions/11828270/how-to-exit-the-vim-editor)
+
+[nh]: https://discord.gg/C29hYvh

@@ -9,7 +9,6 @@
 
 
 SDL_Surface* loadImage(const char path[]){
-    
     SDL_Surface* rawImage = NULL;
     SDL_Surface* returnImage = NULL;
     
@@ -23,7 +22,6 @@ SDL_Surface* loadImage(const char path[]){
 }
 
 void draw(SDL_Surface* source, SDL_Surface* target, int x, int y){
-    
     SDL_Rect coords;
     coords.x = x;
     coords.y = y;
@@ -36,6 +34,10 @@ Button::Button(const char path[], SDL_Surface* screen, int x, int y){
     this->x = x;
     this->y = y;
     this->screen = screen;
+}
+
+void Button::unload() const{
+    SDL_FreeSurface(screen);
 }
 
 void Button::draw(){
