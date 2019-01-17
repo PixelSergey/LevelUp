@@ -1,6 +1,7 @@
 # Levelup
 
-A WIP 3DS homebrew/cia/payload updater application
+A WIP 3DS homebrew/cia/payload updater application.
+Currently a gui with no real chance of becoming an actual application. 
 
 
 ### Building:
